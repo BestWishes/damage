@@ -14,120 +14,148 @@
 </head>
 <body>
 	<div align="center">
-		<select id="zhiyexuanzhe" class="easyui-combobox" name="zhiyexuanzhe" style="width:200px;">   
+		<select id="zhiyexuanzhe" class="easyui-combobox" name="zhiyexuanzhe" style="width:200px;" data-options="required:true,editable:false,panelHeight:'auto'">   
 			<option value="baifenbizhiye">百分比职业</option>
-			<option value="dulizhiye">独立职业</option>
+			<option value="dulizhiye">固伤职业</option>
 		</select>
 	</div>
 	<form id="baifenbiform" method="post" action="Damage">
 		<div align="center">
 			<table>
 				<tr>
-					<th><label class="">原有攻击</label></th>
-					<td><input class="easyui-validatebox" type="text" name="oldgongji" data-options="required:true" /></td>
-					<th><label>攻击</label></th>
-					<td><input class="easyui-validatebox" type="text" name="gongji" data-options="required:true" /></td>
+					<th align="left"><label class="">原有面板攻击</label></th>
+					<td><input class="easyui-numberbox" type="text" name="oldgongji" id="oldgongji" data-options="required:true,min:1" /></td>
+					<th rowspan="9">
+						<img id="rb" width="50px" height="50px" alt="a" src="${pageContext.request.contextPath}/image/rr.png" ><br>
+						<img id="lb" width="50px" height="50px" alt="a" src="${pageContext.request.contextPath}/image/ll.png" >
+					</th>
+					<th align="left"><label>面板攻击</label></th>
+					<td><input class="easyui-numberbox" type="text" name="gongji" id="gongji" data-options="required:true,min:1" /></td>
 				</tr>
 				<tr>
-					<th><label>原有力量</label></th>
-					<td><input class="easyui-validatebox" type="text" name="oldpower" data-options="required:true" /></td>
-					<th><label>力量</label></th>
-					<td><input class="easyui-validatebox" type="text" name="power" data-options="required:true" /></td>
+					<th align="left"><label>原有无视攻击</label></th>
+					<td><input class="easyui-numberbox" type="text" name="oldwushi" id="oldwushi" data-options="required:true,min:0" /></td>
+					<th align="left"><label>无视攻击</label></th>
+					<td><input class="easyui-numberbox" type="text" name="wushi" id="wushi" data-options="required:true,min:0" /></td>
 				</tr>
 				<tr>
-					<th><label>原有无视</label></th>
-					<td><input class="easyui-validatebox" type="text" name="oldwushi" data-options="required:true" /></td>
-					<th><label>无视</label></th>
-					<td><input class="easyui-validatebox" type="text" name="wushi" data-options="required:true" /></td>
+					<th align="left"><label>原有属性强化值</label> </th>
+					<td> <input class="easyui-numberbox" type="text" name="oldshuxin" id="oldshuxin" data-options="required:true" /></td>
+					<th align="left"><label>属性强化值</label> </th>
+					<td> <input class="easyui-numberbox" type="text" name="shuxin"  id="shuxin" data-options="required:true" /></td>
 				</tr>
 				<tr>
-					<th><label>原有属性强化值</label> </th>
-					<td> <input class="easyui-validatebox" type="text" name="oldshuxin" data-options="required:true" /></td>
-					<th><label>属性强化值</label> </th>
-					<td> <input class="easyui-validatebox" type="text" name="shuxin" data-options="required:true" /></td>
+					<th align="left"> <label>原有附加伤害</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="oldfujia" id="oldfujia" data-options="required:true,min:0" />%</td>
+					<th align="left"> <label>附加伤害</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="fujia" id="fujia" data-options="required:true,min:0" />%</td>
 				</tr>
 				<tr>
-					<th> <label>原有附加伤害</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="oldfujia" data-options="required:true" /></td>
-					<th> <label>附加伤害</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="fujia" data-options="required:true" /></td>
+					<th align="left"> <label>原有增加伤害</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="oldzengjia" id="oldzengjia" data-options="required:true" />%</td>
+					<th align="left"> <label>增加伤害</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="zengjia" id="zengjia" data-options="required:true" />%</td>
 				</tr>
 				<tr>
-					<th> <label>原有增加伤害</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="oldzengjia" data-options="required:true" /></td>
-					<th> <label>增加伤害</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="zengjia" data-options="required:true" /></td>
+					<th align="left"> <label>原有暴击增加伤害</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="oldbaoji" id="oldbaoji" data-options="required:true" />%</td>
+					<th align="left"> <label>暴击增加伤害</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="baoji" id="baoji" data-options="required:true" />%</td>
 				</tr>
 				<tr>
-					<th> <label>原有暴击增加伤害</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="oldbaoji" data-options="required:true" /></td>
-					<th> <label>暴击增加伤害</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="baoji" data-options="required:true" /></td>
+					<th align="left"> <label>原有暴击率</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="oldbaojilv" id="oldbaojilv" data-options="required:true,precision:2,max:100,min:0"/>%</td>
+					<th align="left"> <label>暴击率</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="baojilv" id="baojilv" data-options="required:true,precision:2,max:100,min:0" />%</td>
 				</tr>
 				<tr>
-					<th> <label>原有暴击率</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="oldbaojilv" data-options="required:true" /></td>
-					<th> <label>暴击率</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="baojilv" data-options="required:true" /></td>
+					<th align="left"> <label>原有怪物属性抗性</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="oldkangxing" id="oldkangxing" data-options="required:true" /></td>
+					<th align="left"> <label>怪物属性抗性</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="kangxing" id="kangxing" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<th align="left"> <label>原有怪物减伤</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="oldjianshang" id="oldjianshang" data-options="required:true,precision:2,max:99.99" />%</td>
+					<th align="left"> <label>怪物减伤</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="jianshang" id="jianshang" data-options="required:true,precision:2,max:99.99" />%</td>
 				</tr>
 			</table>
 			
 		</div>
 		<div align="center">
 			<input type="submit" class="easyui-linkbutton" id="do" name="do" value="submit"></input>
-			<label>比原来提升了：</label><input id="result" name="result"><label>的伤害</label>
+			<label>比原来提升了：</label><input id="result" name="result" readonly="readonly"><label>的伤害</label>
 		</div>
 	</form>
 	<form id="duliform" method="post" action="Damage">
 		<div align="center">
 			<table>
 				<tr>
-					<th><label>原有力量</label></th>
-					<td><input class="easyui-validatebox" type="text" name="oldpower" data-options="required:true" /></td>
-					<th><label>力量</label></th>
-					<td><input class="easyui-validatebox" type="text" name="power" data-options="required:true" /></td>
+					<th align="left"><label>原有力量</label></th>
+					<td><input id="oldpower" class="easyui-numberbox" type="text" name="oldpower" data-options="required:true,min:1" /></td>
+					<th rowspan="9">
+						<img id="rd" width="50px" height="50px" alt="a" src="${pageContext.request.contextPath}/image/rr.png" ><br>
+						<img id="ld" width="50px" height="50px" alt="a" src="${pageContext.request.contextPath}/image/ll.png" >
+					</th>
+					<th align="left"><label>力量</label></th>
+					<td><input class="easyui-numberbox" type="text" name="power" id="power" data-options="required:true,min:1" /></td>
 				</tr>
 				<tr>
-					<th><label>原有独立</label></th>
-					<td><input class="easyui-validatebox" type="text" name="oldduli" data-options="required:true" /></td>
-					<th><label>独立</label></th>
-					<td><input class="easyui-validatebox" type="text" name="duli" data-options="required:true" /></td>
+					<th align="left"><label>原有独立</label></th>
+					<td><input class="easyui-numberbox" type="text" name="oldduli" id="oldduli" data-options="required:true,min:0" /></td>
+					<th align="left"><label>独立</label></th>
+					<td><input class="easyui-numberbox" type="text" name="duli" id="duli" data-options="required:true,min:0" /></td>
 				</tr>
 				<tr>
-					<th><label>原有属性强化值</label> </th>
-					<td> <input class="easyui-validatebox" type="text" name="oldshuxin" data-options="required:true" /></td>
-					<th><label>属性强化值</label> </th>
-					<td> <input class="easyui-validatebox" type="text" name="shuxin" data-options="required:true" /></td>
+					<th align="left"><label>原有属性强化值</label> </th>
+					<td> <input class="easyui-numberbox" type="text" name="oldshuxin" id="oldshuxin" data-options="required:true,precision:0" /></td>
+					<th align="left"><label>属性强化值</label> </th>
+					<td> <input class="easyui-numberbox" type="text" name="shuxin" id="shuxin" data-options="required:true,precision:0" /></td>
 				</tr>
 				<tr>
-					<th> <label>原有附加伤害</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="oldfujia" data-options="required:true" /></td>
-					<th> <label>附加伤害</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="fujia" data-options="required:true" /></td>
+					<th align="left"> <label>原有附加伤害</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="oldfujia" id="oldfujia" data-options="required:true,min:0" />%</td>
+					<th align="left"> <label>附加伤害</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="fujia" id="fujia" data-options="required:true,min:0" />%</td>
 				</tr>
 				<tr>
-					<th> <label>原有增加伤害</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="oldzengjia" data-options="required:true" /></td>
-					<th> <label>增加伤害</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="zengjia" data-options="required:true" /></td>
+					<th align="left"> <label>原有增加伤害</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="oldzengjia" id="oldzengjia" data-options="required:true" />%</td>
+					<th align="left"> <label>增加伤害</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="zengjia" id="zengjia" data-options="required:true" />%</td>
 				</tr>
 				<tr>
-					<th> <label>原有暴击增加伤害</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="oldbaoji" data-options="required:true" /></td>
-					<th> <label>暴击增加伤害</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="baoji" data-options="required:true" /></td>
+					<th align="left"> <label>原有暴击增加伤害</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="oldbaoji" id="oldbaoji" data-options="required:true" />%</td>
+					<th align="left"> <label>暴击增加伤害</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="baoji" id="baoji" data-options="required:true" />%</td>
 				</tr>
 				<tr>
-					<th> <label>原有暴击率</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="oldbaojilv" data-options="required:true" /></td>
-					<th> <label>暴击率</label></th>
-					<td> <input class="easyui-validatebox" type="text" name="baojilv" data-options="required:true" /></td>
+					<th align="left"> <label>原有暴击率</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="oldbaojilv" id="oldbaojilv" data-options="required:true,precision:2,max:100,min:0" />%</td>
+					<th align="left"> <label>暴击率</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="baojilv" id="baojilv" data-options="required:true,precision:2,max:100,min:0" />%</td>
+				</tr>
+				<tr>
+					<th align="left"> <label>原有怪物属性抗性</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="oldkangxing" id="oldkangxing" data-options="required:true" /></td>
+					<th align="left"> <label>怪物属性抗性</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="kangxing" id="kangxing" data-options="required:true" /></td>
+					<td><img width="20px" height="20px" alt="a" src="${pageContext.request.contextPath}/image/down.jpg"></td>
+				</tr>
+				<tr>
+					<th align="left"> <label>原有怪物减伤</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="oldjianshang" id="oldjianshang" data-options="required:true,precision:2,max:99.99" />%</td>
+					<th align="left"> <label>怪物减伤</label></th>
+					<td> <input class="easyui-numberbox" type="text" name="jianshang" id="jianshang" data-options="required:true,precision:2,max:99.99" />%</td>
+					<td> <img width="20px" height="20px" alt="a" src="${pageContext.request.contextPath}/image/up.png" > </td>
 				</tr>
 			</table>
 		</div>
 		<div align="center">
 			<input type="submit" class="easyui-linkbutton" id="do1" name="do1" value="submit"></input>
-			<label>比原来提升了：</label><input id="result1" name="result1"><label>的伤害</label>
+			<label>比原来提升了：</label><input id="result1" name="result1" readonly="readonly"><label>的伤害</label>
 		</div>
 	</form>
 
