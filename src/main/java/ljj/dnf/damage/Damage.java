@@ -1,6 +1,7 @@
 package ljj.dnf.damage;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.text.NumberFormat;
 import java.util.Enumeration;
 
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Damage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static BigInteger acount=BigInteger.ZERO;
 	/**
 	 * Default constructor.
 	 */
@@ -41,7 +43,7 @@ public class Damage extends HttpServlet {
 		// TODO Auto-generated method stub
 		Enumeration<String> parameters=request.getParameterNames();
 		response.setContentType("application/json;charset=UTF-8");
-
+		Damage.acount=Damage.acount.add(BigInteger.ONE);
 		Double result=1.0d;
 		Double oldresult=1.0d;
 		//职业（百分比、固伤）
@@ -96,7 +98,7 @@ public class Damage extends HttpServlet {
 		}
 		NumberFormat numberFormat=NumberFormat.getPercentInstance();
 		numberFormat.setMinimumFractionDigits(2);
-		System.out.println(numberFormat.format(result/oldresult-1));
+		System.out.println(Damage.acount.intValue());
 		response.getWriter().write(String.valueOf(numberFormat.format(result/oldresult-1)));
 	}
 
