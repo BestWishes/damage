@@ -1,9 +1,12 @@
 package ljj.dnf.damage;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.text.NumberFormat;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +44,6 @@ public class Damage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Enumeration<String> parameters=request.getParameterNames();
 		response.setContentType("application/json;charset=UTF-8");
 		Damage.acount=Damage.acount.add(BigInteger.ONE);
 		Double result=1.0d;
@@ -93,12 +95,34 @@ public class Damage extends HttpServlet {
 			Double oldwushi=Double.valueOf(request.getParameter("oldwushi"));
 			Double wushi=Double.valueOf(request.getParameter("wushi"));
 			
-			oldresult= ((oldgongji*(1+(oldshuxin-oldkangxing)/220.0)*(1-oldjianshang))+oldwushi)*(oldbaojilv*(1.5+oldbaoji)+(1-oldbaojilv))*(1+oldzengjia)*(1+oldfujia*(oldbaojilv*(1.5+oldbaoji)+(1-oldbaojilv)));
-			result=((gongji*(1+(shuxin-kangxing)/220.0)*(1-jianshang))+wushi)*(baojilv*(1.5+baoji)+(1-baojilv))*(1+zengjia)*(1+fujia*(baojilv*(1.5+baoji)+(1-baojilv)));
+			oldresult= ((oldgongji*(1-oldjianshang))+oldwushi)*(1+(oldshuxin-oldkangxing)/220.0)*(oldbaojilv*(1.5+oldbaoji)+(1-oldbaojilv))*(1+oldzengjia)*(1+oldfujia*(oldbaojilv*(1.5+oldbaoji)+(1-oldbaojilv)));
+			result=((gongji*(1-jianshang))+wushi)*(1+(shuxin-kangxing)/220.0)*(baojilv*(1.5+baoji)+(1-baojilv))*(1+zengjia)*(1+fujia*(baojilv*(1.5+baoji)+(1-baojilv)));
 		}
 		NumberFormat numberFormat=NumberFormat.getPercentInstance();
 		numberFormat.setMinimumFractionDigits(2);
-		System.out.println(Damage.acount.intValue());
+		System.out.println(getServletContext().getRealPath("/"));
+		File file=new File(getServletContext().getRealPath("/")+"submitacount.txt");
+		if(!file.exists()){
+			file.createNewFile();
+			FileWriter fileWriter=new FileWriter(file);
+			fileWriter.write(BigInteger.ONE.toString());
+			fileWriter.flush();
+			fileWriter.close();
+		}else {
+			FileReader fileReader=new FileReader(file);
+			
+			String fileAcount="";
+			BufferedReader bufferedReader=new BufferedReader(fileReader);
+			fileAcount=bufferedReader.readLine();
+			bufferedReader.close();
+			fileReader.close();
+			BigInteger submitacount=BigInteger.valueOf(Long.valueOf(fileAcount));
+			submitacount=submitacount.add(BigInteger.ONE);
+			FileWriter fileWriter=new FileWriter(file);
+			fileWriter.write(submitacount.toString());
+			fileWriter.flush();
+			fileWriter.close();
+		}
 		response.getWriter().write(String.valueOf(numberFormat.format(result/oldresult-1)));
 	}
 
