@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	$("#duliform").hide();
 
+	
 	$("#zhiyexuanzhe").combobox({
 		onSelect : function() {
 			if ($("#zhiyexuanzhe").combobox("getValue") == "baifenbizhiye") {
@@ -12,21 +13,29 @@ $(document).ready(function() {
 			}
 		}
 	});
-
+	
 	$("#duliform").form({
 		onSubmit:function(param){
 			param.zhiye=$("#zhiyexuanzhe").combobox("getValue");
 			return $("#duliform").form('validate');
 		},
 		success : function(data) {
-			$("#result1").val(data);
-			if(parseFloat(data)>0){
-				$("#imgresult1").attr('src',"image/up.png");
-			}else if(parseFloat(data)<0){
-				$("#imgresult1").attr('src',"image/down.jpg");
+			if(data==""){
+				$("#result1").val("系统维护中...");
 			}else{
-				$("#imgresult1").attr('src',"image/equals.png");
+				$("#result1").val(data);
+				if(parseFloat(data)>0){
+					$("#imgresult1").attr('src',"image/up.png");
+				}else if(parseFloat(data)<0){
+					$("#imgresult1").attr('src',"image/down.jpg");
+				}else{
+					$("#imgresult1").attr('src',"image/equals.png");
+				}
 			}
+			
+		},
+		onLoadError:function(){
+			$("#result1").val("系统维护中...");
 		}
 	})
 	$("#baifenbiform").form({
@@ -36,14 +45,22 @@ $(document).ready(function() {
 		},
 		
 		success : function(data) {
-			$("#result").val(data);
-			if(parseFloat(data)>0){
-				$("#imgresult").attr('src',"image/up.png");
-			}else if(parseFloat(data)<0){
-				$("#imgresult").attr('src',"image/down.jpg");
+			if(data==""){
+				$("#result").val("系统维护中...");
 			}else{
-				$("#imgresult").attr('src',"image/equals.png");
+				$("#result").val(data);
+				if(parseFloat(data)>0){
+					$("#imgresult").attr('src',"image/up.png");
+				}else if(parseFloat(data)<0){
+					$("#imgresult").attr('src',"image/down.jpg");
+				}else{
+					$("#imgresult").attr('src',"image/equals.png");
+				}
 			}
+			
+		},
+		onLoadError:function(){
+			$("#result1").val("系统维护中...");
 		}
 	})
 	

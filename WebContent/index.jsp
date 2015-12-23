@@ -19,7 +19,7 @@
 			<option value="dulizhiye">固伤职业</option>
 		</select>
 	</div>
-	<form id="baifenbiform" method="post" action="Damage">
+	<form id="baifenbiform" method="get" action="Damage">
 		<div align="center">
 			<table>
 				<tr>
@@ -176,6 +176,7 @@
 			<td> <img  id='imgresult1' width="20px" height="20px" alt="a" src="${pageContext.request.contextPath}/image/equals.png" > </td>
 		</div>
 	</form>
-
+<a href="${pageContext.request.contextPath}/DNFServlet1" name="test">test</a>
+<a href="${pageContext.request.contextPath}/SContentType" name="testContentType">testContentType</a>
 </body>
 </html>
